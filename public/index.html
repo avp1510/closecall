@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="CloseCall surfaces close calls from a bicycle rider's point of view."
+    />
+    <title>CloseCall — Bicycle POV</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="CloseCall home">
+        <span class="brand-mark" aria-hidden="true">CC</span>
+        <span>CloseCall</span>
+      </a>
+      <div class="topbar-meta">
+        <span class="status-dot"></span>
+        VAST video agent
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">BICYCLE POV / RETRIEVED EVENTS</p>
+          <h1>See the path.<br />Spot the close call.</h1>
+          <p class="lede">
+            Search licensed footage for a rider’s own point of view. Green shows the
+            suggested corridor; red marks only objects supported by the caption and detector.
+          </p>
+        </div>
+        <aside class="notice">
+          <strong>Research demo</strong>
+          <span>This is not navigation or collision-avoidance advice.</span>
+        </aside>
+      </section>
+
+      <section class="search-panel" aria-labelledby="search-heading">
+        <div class="section-label">
+          <span>01</span>
+          <h2 id="search-heading">Find rider-view footage</h2>
+        </div>
+        <form id="search-form">
+          <label class="search-box">
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <input
+              id="query"
+              name="query"
+              value="first person view from a bicycle, handlebars visible, riding along a street"
+              autocomplete="off"
+            />
+            <button type="submit">Search archive</button>
+          </label>
+        </form>
+        <div class="chips" aria-label="Suggested searches">
+          <button data-query="first person view from a bicycle, handlebars visible, riding along a street">
+            Bicycle POV
+          </button>
+          <button data-query="car passing close to a bicycle rider">Close pass</button>
+          <button data-query="pedestrian stepping toward a cyclist">Pedestrian crossing</button>
+          <button data-query="vehicle door opening near a bicycle">Opening door</button>
+        </div>
+        <p id="status" class="status" role="status">Ready to search the team index.</p>
+      </section>
+
+      <section class="workspace">
+        <div class="results-column">
+          <div class="section-label">
+            <span>02</span>
+            <h2>Ranked clips</h2>
+          </div>
+          <div id="results" class="results empty-state">
+            <p>No search run yet.</p>
+            <span>The best matching segments will appear here.</span>
+          </div>
+        </div>
+
+        <div class="player-column">
+          <div class="section-label player-heading">
+            <div>
+              <span>03</span>
+              <h2>Inspect evidence</h2>
+            </div>
+            <label class="toggle">
+              <input id="glasses-toggle" type="checkbox" />
+              <span>Glasses view</span>
+            </label>
+          </div>
+
+          <div id="player-shell" class="player-shell">
+            <div id="player-empty" class="player-empty">
+              <span class="reticle" aria-hidden="true"></span>
+              <p>Select a clip to inspect the rider’s view.</p>
+            </div>
+            <video id="video" controls playsinline crossorigin="anonymous"></video>
+            <canvas id="overlay" aria-hidden="true"></canvas>
+            <div class="hud">
+              <span id="hud-mode">NO EVENT</span>
+              <span id="hud-confidence">—</span>
+            </div>
+          </div>
+
+          <article id="evidence" class="evidence hidden">
+            <div>
+              <p class="eyebrow">AGENT SUMMARY</p>
+              <h3 id="event-summary"></h3>
+            </div>
+            <dl>
+              <div><dt>Camera</dt><dd id="event-camera">—</dd></div>
+              <div><dt>Corridor</dt><dd id="event-corridor">—</dd></div>
+              <div><dt>Evidence</dt><dd id="event-avoid">—</dd></div>
+            </dl>
+            <details>
+              <summary>Show source caption and event JSON</summary>
+              <p id="source-caption"></p>
+              <pre id="event-json"></pre>
+            </details>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>CloseCall / VAST Builders Challenge</span>
+      <span>Unmarked does not mean safe.</span>
+    </footer>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
