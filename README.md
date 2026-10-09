@@ -1,6 +1,6 @@
 # CloseCall
 
-A one-day video agent that finds near-miss moments in indexed driving and street footage and draws a green corridor with red highlights. The browser page includes a glasses-style crop. It is a demo of retrieved events, not a driving or safety system.
+A one-day video agent that finds close calls in first-person bicycle footage and draws a green corridor with red highlights. The browser page includes a glasses-style crop. It is a demo of retrieved riding events, not a navigation or safety system.
 
 The build uses the [VAST Builders Challenge](https://github.com/vast-data/vast-builders-challenge#vast-builders-challenge-video-agents) stack that is already running: search, Cosmos Reason captions, YOLO boxes, and a Weights & Biases LLM. It does not train a trajectory model.
 
@@ -8,10 +8,10 @@ The build uses the [VAST Builders Challenge](https://github.com/vast-data/vast-b
 
 ## Demo path
 
-1. Search the team index for a close call on `pie_cam-3` (forward-facing drives). Street cameras are optional after that works.
-2. Re-ingest a few segments only if the captions never mention closeness or which side the object is on.
+1. Search the whole team index, with no camera filter, for a bicycle rider’s point of view. Keep a clip only when the view is from the rider.
+2. Re-ingest that clip only if the caption never mentions closeness or which side the object is on. Use scenario `egocentric`.
 3. Ask the LLM once per clip for a small JSON event: summary, corridor label, and avoid boxes that YOLO already returned.
-4. Play the clip with a green trapezoid and red boxes on those objects. Glasses mode crops the same frame.
+4. Play the clip with a narrower green trapezoid and red boxes on those objects. Glasses mode crops the same frame.
 5. Deploy the page to the team Ingress at `/app`.
 
-NYC first-person driving is the product story. The hackathon demo uses the licensed archive (Toronto dashcam, neighborhood and San Francisco street cameras), not newly downloaded video.
+The listed packs are car dashcams, highway cameras, and fixed street cameras. Do not relabel those as a bicycle. NYC bicycle travel is the product story. The demo uses a licensed rider-view clip from the index, named as the city it actually comes from.
