@@ -35,7 +35,7 @@ The Python server keeps the VSS password and bearer token out of the browser. Ev
 Python 3.11 or newer is sufficient; there are no third-party dependencies.
 
 ```bash
-python main.py
+python3 main.py
 ```
 
 Open `http://localhost:8080`. The page and `/health` work without credentials. Live search requires:
@@ -44,7 +44,7 @@ Open `http://localhost:8080`. The page and `/health` work without credentials. L
 export VSS_URL="https://team-15-vss.thecosmoslabs.com"
 export VSS_USERNAME="team-15"
 export VSS_PASSWORD="..."
-python main.py
+python3 main.py
 ```
 
 Never commit those values. On the workshop VM they are read from `/config/*.config` by the deployment script.
@@ -52,7 +52,7 @@ Never commit those values. On the workshop VM they are read from `/config/*.conf
 ## Test
 
 ```bash
-python -m unittest -v
+python3 -m unittest -v
 node --check public/app.js
 ```
 
